@@ -1,0 +1,19 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/spfx-build/config.2.0.schema.json",
+  "version": "2.0",
+  "bundles": {
+    "deviation-web-part": {
+      "components": [
+        {
+          "entrypoint": "./lib/webparts/deviation/DeviationWebPart.js",
+          "manifest": "./src/webparts/deviation/DeviationWebPart.manifest.json"
+        }
+      ]
+    }
+  },
+  "externals": {},
+  "localizedResources": {
+    "DeviationWebPartStrings": "lib/webparts/deviation/loc/{locale}.js",
+    "ControlStrings": "node_modules/@pnp/spfx-controls-react/lib/loc/{locale}.js"
+  }
+}
