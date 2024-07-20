@@ -1,110 +1,133 @@
 import * as React from 'react';
-
 import { useState } from "react";
-import { SPComponentLoader } from '@microsoft/sp-loader';
-
-import { escape } from '@microsoft/sp-lodash-subset';
-import { Formik, FormikProps, FieldArray, ErrorMessage, Field } from 'formik';
-import { sp, IFolders, Folders } from "@pnp/sp/presets/all";
-
+import { Formik, FormikProps } from 'formik';
+import { useHistory } from 'react-router-dom';
+import EmployeeMasterOps from '../services/BAL/EmployeeMaster';
 import { IDeviationProps } from '../components/IDeviationProps';
 import { IEmployeeMaster } from '../services/INTERFACES/IEmployeeMaster';
-import { ISPCRUD } from '../services/BAL/SPCRUD/spcrud';
-import EmployeeMasterOps from '../services/BAL/EmployeeMaster';
-import { Link, useHistory } from 'react-router-dom';
-
-
+import './NewRequest.css'; // Import the CSS file
 
 export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDeviationProps) => {
-    let SelectedComponent = [];
     const history = useHistory();
-    const [spCrud, setSPCRUD] = React.useState<ISPCRUD>();
-    const [isSubmitted, setIsSubmitted] = React.useState<boolean>(false);
-
-    const [EmployeeMasterCollData, setEmployeeMasterCollData] = React.useState<IEmployeeMaster[]>();
-
+    const [EmployeeMasterCollData, setEmployeeMasterCollData] = useState<IEmployeeMaster[]>();
+    const [currentDate, setCurrentDate] = useState(getDate());
 
     function getFieldProps(formik: FormikProps<any>, field: string) {
         return { ...formik.getFieldProps(field), errorMessage: formik.errors[field] as string };
-      }
+    }
+
+    function getDate() {
+        const today = new Date();
+        const month = today.getMonth() + 1;
+        const year = today.getFullYear();
+        const date = today.getDate();
+        return `${date}/${month}/${year}`;
+    }
 
     React.useEffect(() => {
-
-        let resultarr = [];
-        EmployeeMasterOps().getEmployeeMasterData(props).then((EMPColl) => {
-            console.log(EMPColl);
+        let Currentloggedinuser = props.currentSPContext.pageContext.legacyPageContext.userEmail;
+        EmployeeMasterOps().getEmployeeMasterData(Currentloggedinuser, props).then((EMPColl) => {
             setEmployeeMasterCollData(EMPColl);
         }, error => {
             console.log(error);
         });
-
     }, []);
 
     return (
-        <Formik initialValues={ ""}
-            validationSchema={ ""}
+        <Formik initialValues={{ DeviationRequest: '', Attachment1: '' }}
+            validationSchema={""} // Add your validation schema here
+            onSubmit={(values: any, helpers: any) => {
+                // Handle form submission
+                console.log(values);
+            }}
+        >
+            {(formik: any) => (
+                <div className="new-request-container">
+                    <div className='form-group row'>
+                        <div className='col-md-3'>
+                            <label className='col-form-label'>Initiator Name</label>
+                            <div>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={EmployeeMasterCollData !== undefined && EmployeeMasterCollData[0] !== undefined ? EmployeeMasterCollData[0].Title : ''}
+                                    readOnly
+                                />
+                            </div>
+                        </div>
+                        <br></br>
 
-            onSubmit={(values: any, helpers: any) => { }}>{
-                (formik: any) => (
-                    // <section >
+                        <div className='col-md-3'>
+                            <label className='col-form-label'>Date of Request</label>
+                            <div>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={currentDate}
+                                    readOnly
+                                />
+                            </div>
+                        </div>
+                        <br></br>
 
-                    <div>
-                    <div className='p-3 bg-white shadow-sm border'>
-                      {/* <h1 className={styles.headingh1}>Product Information</h1> */}
-                      <div className='form-group row'>
-                        <div className='col-md-4'>
-                          <label className='col-form-label'>Initiator Name</label>
-                          <div>
-                            <input type='text' id='txtInitiatorname' className='form-control'  {...getFieldProps(formik, 'InitiatorName')}></input>
-    
-                          </div>
+                        <div className='col-md-3'>
+                            <label className='col-form-label'>Department</label>
+                            <div>
+                                <input
+                                    type="text"
+                                    className="form-control"
+                                    value={EmployeeMasterCollData !== undefined && EmployeeMasterCollData[0] !== undefined ? EmployeeMasterCollData[0].Department : ''}
+                                    readOnly
+                                />
+                            </div>
                         </div>
-                        <div className='col-md-4'>
-                          <label className='col-form-label'>Date of Request   </label>
-                          <div>
-                            <input type='date' id='txtDateOfRequest' className='form-control'  {...getFieldProps(formik, 'DateOfRequest')}></input>
-    
-                          </div>
-                        </div>
-                        <div className='col-md-4'>
-                          <label className='col-form-label'>Department</label>
-                          <div>
-                            <input type='text' id='txtDepartment' className='form-control' {...getFieldProps(formik, 'Department')}></input>
-                            {formik.errors.Department ? (
-                              <div
-                                style={{
-                                  paddingTop: 0,
-                                  color: "#B2484D",
-                                  fontSize: ".75rem",
-                                  fontFamily: "Segoe UI"
-                                }}
-                              >
-                                {JSON.stringify(formik.errors.Department).replace(/"/g, '')}
-                              </div>
-                            ) : null}
-                          </div>
-                        </div>
-                      </div>
-            
-                      <div className='form-group row'>
-                        <div className='col-md-4'>
-                          <label className='col-form-label'>Deviation Request</label>
-                          <div>
-                            <input type='text' id='txtDeviationRequest' className='form-control'  {...getFieldProps(formik, 'DeviationRequest')}></input>
-    
-                          </div>
-                        </div>
-                        
-                      </div>
-                     
+                        <br></br>
 
                     </div>
-                   
-                  
-                  </div>
-)}
+
+                    <br>
+                    </br>
+
+                    <br>
+                    </br>
+                    <br>
+                    </br>
+
+                    <div>
+                        <div className='form-group row'>
+                            <div className='col-md-6'>
+                                <label className='col-form-label'>Deviation Request <span className="text-danger">*</span></label>
+                                <div>
+                                    <textarea id='txtDeviationRequest' className='form-control' {...getFieldProps(formik, 'DeviationRequest')} />
+                                </div>
+                            </div>
+                            <br></br>
+                            <br></br>
+
+
+
+                            <div className='col-md-6'>
+                                <label className='col-form-label'>Attachment 1 <span className="text-danger">*</span></label>
+                                <div>
+                                    <input type="file" className="form-control" {...getFieldProps(formik, 'Attachment')} />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+<br></br>
+<br></br>
+
+
+                    <div className="form-group row justify-content-center">
+                        <button type="submit" className="btn btn-primary mx-2">Submit</button>
+                        <button type="button" className="btn btn-secondary mx-2" onClick={() => history.push('/')}>Exit</button>
+                    </div>
+
+                </div>
+
+                
+            )}
         </Formik>
-
-)
-
-}
+    );
+};

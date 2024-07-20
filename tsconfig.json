@@ -13,8 +13,10 @@
     "outDir": "lib",
     "inlineSources": false,
     "noImplicitAny": false,
+    // new added to resolve error 
     "noUnusedLocals": false,
     "strictNullChecks": false,
+    // new added to resolve error 
 
     "typeRoots": [
       "./node_modules/@types",

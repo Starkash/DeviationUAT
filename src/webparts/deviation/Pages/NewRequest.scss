@@ -1,0 +1,88 @@
+/* Container Styling */
+.new-request-container {
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* Form Group Styling */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Row Styling */
+.form-group.row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Column Styling */
+.col-md-4, .col-md-6 {
+    flex: 1;
+    min-width: 250px;
+}
+
+/* Label Styling */
+.col-form-label {
+    font-weight: bold;
+    color: #495057;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Input and Textarea Styling */
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+}
+
+textarea.form-control {
+    height: 100px;
+    resize: vertical;
+}
+
+/* Read-only Text Styling */
+.text-secondary {
+    color: #6c757d;
+}
+
+/* Button Styling */
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #ffffff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* Error Text Styling */
+.text-danger {
+    color: #dc3545;
+}

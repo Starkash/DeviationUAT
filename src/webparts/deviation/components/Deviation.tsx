@@ -27,7 +27,7 @@ export default class Deviation extends React.Component<IDeviationProps, {}> {
         <HashRouter>
                 <Switch>                 
                   <Route path='/' exact={true}  render={() => <NewRequest  {...this.props} />} />
-                  {/* <Route path='/RequestForm' exact={true}  render={() => <NewRequest  {...this.props} />} /> */}
+                  <Route path='/RequestForm' exact={true}  render={() => <NewRequest  {...this.props} />} />
                   {/* <Route path='/RquestBDFormView' exact={true}  render={() => <MedRedFormView  {...this.props} />} />
                   <Route path='/MedRegLanding' exact={true}  render={() => <MedRegLanding  {...this.props} />} />
                   

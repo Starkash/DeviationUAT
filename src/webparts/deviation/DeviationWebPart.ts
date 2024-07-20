@@ -14,6 +14,7 @@ import { IDeviationProps } from './components/IDeviationProps';
 
 export interface IDeviationWebPartProps {
   description: string;
+
 }
 
 export default class DeviationWebPart extends BaseClientSideWebPart<IDeviationWebPartProps> {
