@@ -16,7 +16,6 @@ export interface IDeviationWebPartProps {
   description: string;
 
 }
-
 export default class DeviationWebPart extends BaseClientSideWebPart<IDeviationWebPartProps> {
 
   private _isDarkTheme: boolean = false;

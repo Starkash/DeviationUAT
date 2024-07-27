@@ -34,8 +34,8 @@ export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDev
     }, []);
 
     return (
-        <Formik initialValues={{ DeviationRequest: '', Attachment1: '' }}
-            validationSchema={""} // Add your validation schema here
+        <Formik initialValues={{ DeviationRequest: '', Attachment: '' }}
+            validationSchema={""} // Add your validation schema here.
             onSubmit={(values: any, helpers: any) => {
                 // Handle form submission
                 console.log(values);
@@ -48,8 +48,8 @@ export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDev
                             <label className='col-form-label'>Initiator Name</label>
                             <div>
                                 <input
-                                    type="text"
-                                    className="form-control"
+                                    type="text" 
+                                    className="form-control" {...getFieldProps(formik, 'InitiatorNAme')}
                                     value={EmployeeMasterCollData !== undefined && EmployeeMasterCollData[0] !== undefined ? EmployeeMasterCollData[0].Title : ''}
                                     readOnly
                                 />
@@ -61,7 +61,7 @@ export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDev
                             <label className='col-form-label'>Date of Request</label>
                             <div>
                                 <input
-                                    type="text"
+                                    type="text" {...getFieldProps(formik, 'DateOfRequest')}
                                     className="form-control"
                                     value={currentDate}
                                     readOnly
@@ -75,7 +75,7 @@ export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDev
                             <div>
                                 <input
                                     type="text"
-                                    className="form-control"
+                                    className="form-control"  {...getFieldProps(formik, 'Department')}
                                     value={EmployeeMasterCollData !== undefined && EmployeeMasterCollData[0] !== undefined ? EmployeeMasterCollData[0].Department : ''}
                                     readOnly
                                 />
@@ -107,15 +107,18 @@ export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDev
 
 
                             <div className='col-md-6'>
-                                <label className='col-form-label'>Attachment 1 <span className="text-danger">*</span></label>
+                                <label className='col-form-label'>Attachment <span className="text-danger">*</span></label>
                                 <div>
-                                    <input type="file" className="form-control" {...getFieldProps(formik, 'Attachment')} />
+                                    <input type="file" multiple className="form-control" {...getFieldProps(formik, 'Attachment')} />
+                                    
                                 </div>
                             </div>
                         </div>
                     </div>
 
 <br></br>
+
+
 <br></br>
 
 
