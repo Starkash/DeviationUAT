@@ -1,3 +1,6 @@
+import { WebPartContext } from "@microsoft/sp-webpart-base";
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IDeviationProps {
   description: string;
   isDarkTheme: boolean;
@@ -5,5 +8,6 @@ export interface IDeviationProps {
   hasTeamsContext: boolean;
   userDisplayName: string;
   currentSPContext?: any;
+
 
 }

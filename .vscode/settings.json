@@ -10,5 +10,11 @@
     "**/lib-amd": true,
     "src/**/*.scss.ts": true
   },
-  "typescript.tsdk": ".\\node_modules\\typescript\\lib"
+  "typescript.tsdk": ".\\node_modules\\typescript\\lib",
+  "cSpell.words": [
+    "Currentloggedinuser",
+    "fluentui",
+    "spfx",
+    "webpart"
+  ]
 }

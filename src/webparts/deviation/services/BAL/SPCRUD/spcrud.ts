@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import "@pnp/sp/lists";
 import "@pnp/sp/items";
 import { IDeviationProps } from "../../../components/IDeviationProps";

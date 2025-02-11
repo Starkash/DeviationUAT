@@ -1,0 +1,124 @@
+
+
+// import * as React from "react";
+// import { useState, useEffect } from "react";
+// import { Tree, Dropdown, Menu, Table } from "antd";
+// import { FolderOutlined, FileOutlined, EyeOutlined, EditOutlined, DeleteOutlined, DownloadOutlined } from "@ant-design/icons";
+// import { IDeviationProps } from "../components/IDeviationProps";
+// import "./NewRequest.css";
+// import { ILibraryUpload } from "../services/INTERFACES/ILibraryUpload";
+// import LibraryUploadOps from "../services/BAL/LibraryUpload";
+
+// export const LibraryUpload: React.FunctionComponent<IDeviationProps> = (props: IDeviationProps) => {
+//     const [LibraryUploadCollData, setLibraryUploadCollData] = useState<ILibraryUpload[]>([]);
+//     const [expandedKeys, setExpandedKeys] = useState<string[]>([]); // Track expanded folders
+
+//     useEffect(() => {
+//         LibraryUploadOps().getLibraryUploadData(props).then((data) => {
+//             setLibraryUploadCollData(data);
+//         }).catch(error => {
+//             console.log(error);
+//         });
+//     }, []);
+
+//     // Function to handle file click (Opens the file in a new tab)
+//     const openFile = (filePath: string) => {
+//         window.open(filePath, "_blank");
+//     };
+
+//     // Function to handle folder expansion
+//     const onExpand = (expandedKeysValue: string[]) => {
+//         setExpandedKeys(expandedKeysValue);
+//     };
+
+//     // Function to create action menu for each item
+//     const getActionMenu = (item: ILibraryUpload) => (
+//         <Menu>
+//             <Menu.Item key="view" icon={<EyeOutlined />} onClick={() => openFile(item.Path)}>View</Menu.Item>
+//             <Menu.Item key="edit" icon={<EditOutlined />}>Edit</Menu.Item>
+//             <Menu.Item key="delete" icon={<DeleteOutlined />}>Delete</Menu.Item>
+//             <Menu.Item key="download" icon={<DownloadOutlined />} onClick={() => openFile(item.Path)}>Download</Menu.Item>
+//         </Menu>
+//     );
+
+//     // Convert data into tree structure
+//     const generateTreeData = (items: ILibraryUpload[]) => {
+//         const treeData: any[] = [];
+
+//         items.forEach(item => {
+//             if (item.Type === "Folder") {
+//                 treeData.push({
+//                     title: (
+//                         <span>
+//                             <FolderOutlined style={{ color: "goldenrod", marginRight: 8 }} />
+//                             {item.Title}
+//                         </span>
+//                     ),
+//                     key: item.Id,
+//                     path: item.Path,
+//                     children: [],
+//                     isLeaf: false,
+//                 });
+//             } else {
+//                 treeData.push({
+//                     title: (
+//                         <span>
+//                             <FileOutlined style={{ color: "green", marginRight: 8 }} />
+//                             {item.Title}
+//                         </span>
+//                     ),
+//                     key: item.Id,
+//                     size: item.Size || "N/A",
+//                     type: item.Type,
+//                     modified: new Date(item.Modified).toLocaleString(),
+//                     modifiedBy: item.ModifiedBy,
+//                     path: item.Path,
+//                     isLeaf: true,
+//                     actions: <Dropdown overlay={getActionMenu(item)}><span style={{ cursor: "pointer" }}>⋮</span></Dropdown>,
+//                 });
+//             }
+//         });
+
+//         return treeData;
+//     };
+
+//     const treeData = generateTreeData(LibraryUploadCollData);
+
+//     // Table Columns
+//     const columns = [
+//         { title: "Name", dataIndex: "title", key: "title" },
+//         { title: "Size", dataIndex: "size", key: "size" },
+//         { title: "Type", dataIndex: "type", key: "type" },
+//         { title: "Last Edit", dataIndex: "modified", key: "modified" },
+//         { title: "Modified By", dataIndex: "modifiedBy", key: "modifiedBy" },
+//         { title: "Actions", dataIndex: "actions", key: "actions" },
+//     ];
+
+//     return (
+//         <div className="new-request-container">
+//             <h4>Document Libraries and Knowledge</h4>
+
+//             {/* Folder Structure */}
+//             <Tree
+//                 treeData={treeData}
+//                 expandedKeys={expandedKeys}
+//                 onExpand={onExpand}
+//                 showLine
+//                 onSelect={(selectedKeys, { node }) => {
+//                     if (node.isLeaf) {
+//                         openFile(node.path);
+//                     } else {
+//                         setExpandedKeys(prev => prev.includes(node.key) ? prev.filter(k => k !== node.key) : [...prev, node.key]);
+//                     }
+//                 }}
+//             />
+
+//             {/* Table for Files */}
+//             <Table
+//                 columns={columns}
+//                 dataSource={treeData.filter(item => item.isLeaf)} // Only show files in table
+//                 pagination={false}
+//             />
+//         </div>
+//     );
+// };

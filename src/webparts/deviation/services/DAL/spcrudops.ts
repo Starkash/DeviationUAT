@@ -10,6 +10,8 @@ import { IDeviationProps } from "../../components/IDeviationProps";
 export interface ISPCRUDOPS {
     getData(listName: string, columnsToRetrieve: string, columnsToExpand: string, filters: string
         , orderby: { column: string, isAscending: boolean}, props: IDeviationProps): Promise<any>;
+        // getFolderData(listName: string, columnsToRetrieve: string, columnsToExpand: string, filters: string
+        //     , orderby: { column: string, isAscending: boolean}, props: IDeviationProps): Promise<any>;
     insertData(listName: string, data: any, props: IDeviationProps): Promise<any>;
     updateData(listName: string, itemId: number, data: any, props: IDeviationProps): Promise<any>;
     deleteData(listName: string, itemId: number, props: IDeviationProps): Promise<any>;
@@ -43,6 +45,14 @@ export default async function SPCRUDOPS(): Promise<ISPCRUDOPS> {
         const items: any[] = await web.lists.getByTitle(listName).items.select(columnsToRetrieve).expand(columnsToExpand).filter(filters).orderBy(orderby.column, orderby.isAscending).getAll();
         return items;
     };
+
+    
+    // const getFolderData = async (listName: string, columnsToRetrieve: string, columnsToExpand: string, filters: string, orderby: {column: string, isAscending: boolean}, props: IDeviationProps) => {
+    //     let web = Web(props.currentSPContext.pageContext.web.absoluteUrl);
+    //     const items: any[] = await web.lists.getByTitle(listName).items.select(columnsToRetrieve).expand(columnsToExpand).filter(filters).orderBy(orderby.column, orderby.isAscending).getAll();
+    //     return items;
+    // };
+
 
     const insertData = async (listName: string, data: any, props: IDeviationProps) => {
         let web = Web(props.currentSPContext.pageContext.web.absoluteUrl);
@@ -224,6 +234,7 @@ return avatar;
         uploadFile,
         deleteFile,
         currentProfile,
+        // getFolderData,
         //currentUserProfile,
         getLoggedInSiteGroups,
         getAllSiteGroups,

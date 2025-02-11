@@ -1,3 +1,5 @@
+/* eslint-disable react/self-closing-comp */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as React from 'react';
 import styles from './Deviation.module.scss';
 import type { IDeviationProps } from './IDeviationProps';
@@ -6,6 +8,7 @@ import { escape } from '@microsoft/sp-lodash-subset';
 import { NewRequest } from '../Pages/NewRequest';
 // import { HashRouter, Route, Switch } from 'react-router-dom';
 import { BrowserRouter as Router, Switch, Route, Link, HashRouter, match, useParams, Redirect } from 'react-router-dom';
+import { LibraryUpload } from '../Pages/LibraryUpload';
 
 
 export default class Deviation extends React.Component<IDeviationProps, {}> {
@@ -28,9 +31,9 @@ export default class Deviation extends React.Component<IDeviationProps, {}> {
                 <Switch>                 
                   <Route path='/' exact={true}  render={() => <NewRequest  {...this.props} />} />
                   <Route path='/RequestForm' exact={true}  render={() => <NewRequest  {...this.props} />} />
-                  {/* <Route path='/RquestBDFormView' exact={true}  render={() => <MedRedFormView  {...this.props} />} />
-                  <Route path='/MedRegLanding' exact={true}  render={() => <MedRegLanding  {...this.props} />} />
-                  
+                 <Route path='/LibraryUpload' exact={true}  render={() => <LibraryUpload  {...this.props} />} />
+                    {/*  <Route path='/MedRegLanding' exact={true}  render={() => <MedRegLanding  {...this.props} />} />
+                
                   <Route path='/ApproverLanding' exact={true}  render={() => <ApproverLanding  {...this.props} />} />
                    <Route path='/InitiatorLanding' exact={true}  render={() => <InitiatorLanding  {...this.props} />} />
                    <Route path='/BDLanding' exact={true}  render={() => <BDLanding  {...this.props} />} />

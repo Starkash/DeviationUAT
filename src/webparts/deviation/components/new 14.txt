@@ -1,0 +1,257 @@
+
+You said:
+all type of piramid
+ChatGPT said:
+ChatGPT
+Here are various types of pyramids that can be printed in C#:
+
+1. Right-Angled Pyramid
+This pyramid aligns to the left:
+
+csharp
+Copy code
+using System;
+
+class RightAngledPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= size; i++)
+        {
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write("* ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+markdown
+Copy code
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+2. Centered Pyramid
+A symmetrical pyramid with center alignment:
+
+csharp
+Copy code
+using System;
+
+class CenteredPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= size; i++)
+        {
+            Console.Write(new string(' ', size - i));
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write("* ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+markdown
+Copy code
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+3. Inverted Pyramid
+This pyramid is upside down:
+
+csharp
+Copy code
+using System;
+
+class InvertedPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        for (int i = size; i >= 1; i--)
+        {
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write("* ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+markdown
+Copy code
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+4. Centered Inverted Pyramid
+An inverted pyramid that is center-aligned:
+
+csharp
+Copy code
+using System;
+
+class CenteredInvertedPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        for (int i = size; i >= 1; i--)
+        {
+            Console.Write(new string(' ', size - i));
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write("* ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+markdown
+Copy code
+* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 
+5. Number Pyramid
+A pyramid that prints numbers instead of stars:
+
+csharp
+Copy code
+using System;
+
+class NumberPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= size; i++)
+        {
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write(j + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+Copy code
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5 
+6. Number Centered Pyramid
+A number pyramid that is center-aligned:
+
+csharp
+Copy code
+using System;
+
+class NumberCenteredPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        for (int i = 1; i <= size; i++)
+        {
+            Console.Write(new string(' ', size - i));
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write(j + " ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+markdown
+Copy code
+    1 
+   1 2 
+  1 2 3 
+ 1 2 3 4 
+1 2 3 4 5 
+7. Diamond Shape Pyramid
+A combination of a pyramid and an inverted pyramid to form a diamond shape:
+
+csharp
+Copy code
+using System;
+
+class DiamondPyramid
+{
+    static void Main()
+    {
+        Console.Write("Enter the size of the pyramid: ");
+        int size = int.Parse(Console.ReadLine());
+
+        // Upper half (centered pyramid)
+        for (int i = 1; i <= size; i++)
+        {
+            Console.Write(new string(' ', size - i));
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write("* ");
+            }
+            Console.WriteLine();
+        }
+
+        // Lower half (centered inverted pyramid)
+        for (int i = size - 1; i >= 1; i--)
+        {
+            Console.Write(new string(' ', size - i));
+            for (int j = 1; j <= i; j++)
+            {
+                Console.Write("* ");
+            }
+            Console.WriteLine();
+        }
+    }
+}
+Example (size = 5):
+
+markdown
+Copy code
+    * 
+   * * 
+  * * * 
+ * * * * 
+* * * * * 
+ * * * * 
+  * * * 
+   * * 
+    * 

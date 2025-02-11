@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/explicit-function-return-type */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/self-closing-comp */
 import * as React from 'react';
 import { useState } from "react";
 import { Formik, FormikProps } from 'formik';
@@ -25,6 +29,7 @@ export const NewRequest: React.FunctionComponent<IDeviationProps> = (props: IDev
     }
 
     React.useEffect(() => {
+        // eslint-disable-next-line prefer-const
         let Currentloggedinuser = props.currentSPContext.pageContext.legacyPageContext.userEmail;
         EmployeeMasterOps().getEmployeeMasterData(Currentloggedinuser, props).then((EMPColl) => {
             setEmployeeMasterCollData(EMPColl);

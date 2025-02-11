@@ -1,6 +1,8 @@
 {
   "extends": "./node_modules/@microsoft/rush-stack-compiler-4.7/includes/tsconfig-web.json",
   "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+
     "target": "es5",
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
@@ -13,6 +15,7 @@
     "outDir": "lib",
     "inlineSources": false,
     "noImplicitAny": false,
+    
     // new added to resolve error 
     "noUnusedLocals": false,
     "strictNullChecks": false,
